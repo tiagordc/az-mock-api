@@ -22,11 +22,14 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
        "headers": req.headers.__http_headers__
     }
 
+    if hasattr(req, "form") and len(req.form) > 0:
+        request["form"] = req.form
+
     mem_zip = BytesIO()
 
     with ZipFile(mem_zip, mode="w", compression=deflated) as zf:
         zf.writestr("request.txt", json.dumps(request))
-        if req.files.__len__() > 0:
+        if hasattr(req, "files") and len(req.files) > 0:
             logging.info('Attaching request files')
             for file in req.files:
                 file_data = req.files[file].stream.read()
