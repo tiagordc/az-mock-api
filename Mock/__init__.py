@@ -12,7 +12,8 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
 
     logging.info('Generating request dump')
 
-    connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+    #connection_string = os.getenv("AZURE_STORAGE_CONNECTION_STRING")
+    connection_string = "DefaultEndpointsProtocol=https;AccountName=storageaccountmocki9aca;AccountKey=8frtmVQ5QuGt7JoH3Uf5PIBAYDx1biKX7Aik5LtmmcX7bOeAsqKSPAt6Bl3k5CALglrp2VRw1SsGy5wV9BO02g==;EndpointSuffix=core.windows.net"
     container_name = "uploads"
     file_name = datetime.now(timezone.utc).isoformat() + ".zip"
 
